@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!-- 配置连接数据源信息 -->
 <configuration>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="dialect" value="mysql"/>
+            <property name="offsetAsPageNum" value="true"/>
+            <property name="rowBoundsWithCount" value="true"/>
+        </plugin>
+    </plugins>
 
-	<environments default="m">
-		<environment id="m">
-			<transactionManager type="JDBC"/>
-			<dataSource type="POOLED">
-				<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-				<!-- 以下value可以简写成 jdbc:mysql:///one?useUnicode=true&amp;characterEncoding=utf-8-->
-				<property name="url" value="jdbc:mysql://localhost:3306/yc_database?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=GMT"/>
-				<property name="username" value="root"/>
-				<property name="password" value="aA123"/>
-			</dataSource>
-		</environment>
-	</environments>
-<!-- 配置映射信息 -->
-	<mappers>
-		<mapper resource="mapper/TUserMapper.xml"></mapper>
-	</mappers>
+    <environments default="m">
+        <environment id="m">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <!-- 以下value可以简写成 jdbc:mysql:///one?useUnicode=true&amp;characterEncoding=utf-8-->
+                <property name="url"
+                          value="jdbc:mysql://localhost:3306/yc_database?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=GMT"/>
+                <property name="username" value="root"/>
+                <property name="password" value="aA123"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!-- 配置映射信息 -->
+    <mappers>
+        <mapper resource="mapper/TUserMapper.xml"></mapper>
+    </mappers>
+
 </configuration>
