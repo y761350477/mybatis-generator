@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.demo.testmybatis.TUserMapper" >
-  <resultMap id="BaseResultMap" type="com.demo.testmybatis.TUser" >
+<mapper namespace="com.demo.testmybatis.dao.TUserMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.testmybatis.entity.TUser" >
     <id column="t_id" property="tId" jdbcType="INTEGER" />
     <result column="t_name" property="tName" jdbcType="VARCHAR" />
     <result column="t_age" property="tAge" jdbcType="TINYINT" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List" >
     t_id, t_name, t_age, t_address
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.demo.testmybatis.TUserExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.demo.testmybatis.entity.TUserExample" >
     select
     <if test="distinct" >
       distinct
@@ -92,19 +92,19 @@
     delete from t_user
     where t_id = #{tId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.demo.testmybatis.TUserExample" >
+  <delete id="deleteByExample" parameterType="com.demo.testmybatis.entity.TUserExample" >
     delete from t_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.demo.testmybatis.TUser" >
+  <insert id="insert" parameterType="com.demo.testmybatis.entity.TUser" >
     insert into t_user (t_id, t_name, t_age, 
       t_address)
     values (#{tId,jdbcType=INTEGER}, #{tName,jdbcType=VARCHAR}, #{tAge,jdbcType=TINYINT}, 
       #{tAddress,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.demo.testmybatis.TUser" >
+  <insert id="insertSelective" parameterType="com.demo.testmybatis.entity.TUser" >
     insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="tId != null" >
@@ -135,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.demo.testmybatis.TUserExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.demo.testmybatis.entity.TUserExample" resultType="java.lang.Integer" >
     select count(*) from t_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -171,7 +171,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.demo.testmybatis.TUser" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.testmybatis.entity.TUser" >
     update t_user
     <set >
       <if test="tName != null" >
@@ -186,7 +186,7 @@
     </set>
     where t_id = #{tId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.demo.testmybatis.TUser" >
+  <update id="updateByPrimaryKey" parameterType="com.demo.testmybatis.entity.TUser" >
     update t_user
     set t_name = #{tName,jdbcType=VARCHAR},
       t_age = #{tAge,jdbcType=TINYINT},
