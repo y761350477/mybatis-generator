@@ -1,0 +1,2 @@
+1. 有意思,plugin标签中配置mysql低版本的依赖,竟然和dependencies中配置的高版本的依赖共存,plugin中的mysql用于匹配generatorConfig,xnl中配置的数据库连接信息,dependencies的mysql用于jdbc.properties中配置的数据库的连接信息.
+2. 多次使用mybatis-generator生成信息,会在mapper.xml中依次叠加信息,而bean和mapper信息是覆盖.

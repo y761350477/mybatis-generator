@@ -40,11 +40,6 @@
         </dependency>
 
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
@@ -85,7 +80,7 @@
                 <version>1.3.2</version>
                 <configuration>
                     <!--配置文件的位置-->
-                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
+                    <configurationFile>src/main/resources/mybatis-generator/generatorConfig.xml</configurationFile>
                     <verbose>true</verbose>
                     <overwrite>true</overwrite>
                 </configuration>
@@ -98,6 +93,18 @@
                     </execution>
                 </executions>
                 <dependencies>
+
+                    <!--
+                    有意思,plugin标签中配置mysql低版本的依赖,竟然和dependencies中配置的高版本的依赖共存,
+                    plugin中的mysql用于匹配generatorConfig,xnl中配置的数据库连接信息,
+                    dependencies的mysql用于jdbc.properties中配置的数据库的连接信息.
+                     -->
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.39</version>
+                    </dependency>
+
                     <dependency>
                         <groupId>org.mybatis.generator</groupId>
                         <artifactId>mybatis-generator-core</artifactId>
